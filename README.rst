@@ -3,15 +3,14 @@
 .. image:: https://coveralls.io/repos/github/kyuupichan/electrumx/badge.svg
     :target: https://coveralls.io/github/kyuupichan/electrumx
 
-===============================================
-ElectrumX - Reimplementation of electrum-server
-===============================================
-
-For a future network with bigger blocks.
+======================================================================
+ElectrumX - Reimplementation of electrum-server with removed shitcoins
+======================================================================
 
   :Licence: MIT
   :Language: Python (>= 3.6)
   :Author: Neil Booth
+  :Fork maintained by: Mario Dian
 
 Documentation
 =============

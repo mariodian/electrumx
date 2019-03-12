@@ -2,6 +2,8 @@
  ChangeLog
 ===========
 
+* Please ignore the shitcoins-related changelog.
+
 .. note:: It is strongly recommended you upgrade to Python 3.7, which
    fixes bugs in asyncio that caused an ever-growing open file count
    and memory consumption whilst serving clients.  Those problems

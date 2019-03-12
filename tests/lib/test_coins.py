@@ -1,7 +1,7 @@
 import electrumx.lib.coins as coins
 
 
-def test_bitcoin_cash():
+def test_bitcoin():
     raw_header = bytes.fromhex(
         "00000020df975c121dcbc18bbb7ddfd0419fc368b45db86b48c87e0"
         "1000000000000000036ae3dd40a10a40d3050de13ca546a2f81589d"
@@ -20,5 +20,5 @@ def test_bitcoin_cash():
         'nonce': 3321400748
     }
 
-    assert coins.BitcoinCash.electrum_header(
+    assert coins.Bitcoin.electrum_header(
         raw_header, height) == electrum_header

@@ -9,27 +9,21 @@ from aiorpcx import (
     JSONRPCv1, JSONRPCLoose, RPCError, ignore_after,
     Request, Batch,
 )
-from electrumx.lib.coins import BitcoinCash, CoinError, Bitzeny, Dash
+from electrumx.lib.coins import Bitcoin, CoinError
 from electrumx.server.daemon import (
-    Daemon, FakeEstimateFeeDaemon, DaemonError
+    Daemon, DaemonError
 )
 
 
-coin = BitcoinCash
+coin = Bitcoin
 
 # These should be full, canonical URLs
 urls = ['http://rpc_user:rpc_pass@127.0.0.1:8332/',
         'http://rpc_user:rpc_pass@192.168.0.1:8332/']
 
 
-@pytest.fixture(params=[BitcoinCash, Bitzeny])
+@pytest.fixture(params=[Bitcoin])
 def daemon(request):
-    coin = request.param
-    return coin.DAEMON(coin, ','.join(urls))
-
-
-@pytest.fixture(params=[Dash])
-def dash_daemon(request):
     coin = request.param
     return coin.DAEMON(coin, ','.join(urls))
 
@@ -338,13 +332,6 @@ async def test_getrawtransaction(daemon):
     with ClientSessionGood(('getrawtransaction', [hex_hash, 1], verbose)):
         assert await daemon.getrawtransaction(
             hex_hash, True) == verbose
-
-
-@pytest.mark.asyncio
-async def test_protx(dash_daemon):
-    protx_hash = 'deadbeaf'
-    with ClientSessionGood(('protx', ['info', protx_hash], {})):
-        assert await dash_daemon.protx(['info', protx_hash]) == {}
 
 
 # Batch tests
